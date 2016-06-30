@@ -2,7 +2,7 @@
  * Logo
  */
 (function(videojs) {
-    videojs.plugin('logo', function() {
+    var logoFunc = function() {
         // Create variables and new div, anchor and image for company logo
         var player = this,
             title,
@@ -22,5 +22,7 @@
         if (title != null) {
             title.insertBefore(newElement, title.firstElementChild);
         }
-    });
+    }
+    
+    videojs.plugin('logo', logoFunc);
 })(videojs);

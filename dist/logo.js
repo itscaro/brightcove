@@ -37,6 +37,7 @@ var onPlayerReady = function onPlayerReady(player, options) {
   // Assign id and classes to div for logo
   newElement.classList.add('vjs-logo');
   newElement.style.float = 'left';
+  newElement.style.marginRight = '15px';
 
   // Assign properties to elements and assign to parents
   newImage.setAttribute('src', options.logo);

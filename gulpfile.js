@@ -1,8 +1,13 @@
-var gulp = require('gulp');
-var uglify = require('gulp-uglify');
-var pump = require('pump');
+const gulp = require('gulp');
+const uglify = require('gulp-uglify');
+const pump = require('pump');
+const babel = require('gulp-babel');
+const browserify = require('browserify');
+var transform = require('vinyl-transform');
+var source = require('vinyl-source-stream');
+var fs = require('fs');
 
-gulp.task('compress', function (cb) {
+gulp.task('compress', (cb) => {
   pump([
       gulp.src('src/**/*.js'),
       uglify(),
@@ -11,3 +16,29 @@ gulp.task('compress', function (cb) {
     cb
   );
 });
+
+gulp.task('babel', (cb) => {
+  return gulp.src('src/**/*.js')
+    .pipe(babel({
+      presets: ['es2015']
+    }))
+    .pipe(gulp.dest('build'));
+});
+
+gulp.task('browserify', ['babel'], (cb) => {
+  fs.readdir('./build', (err, files) => {
+    for(var file of files) {
+      if (file.match(/.+js$/)) {
+        console.log(file)
+        browserify('build/' + file)
+          .bundle()
+          .pipe(source(file))
+          .pipe(gulp.dest('dist'));
+      }
+    }
+
+    cb()
+  })
+});
+
+gulp.task('default', ['browserify']);

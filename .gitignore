@@ -49,4 +49,3 @@ fabric.properties
 build/
 node_modules/
 tasks/
-dist/

@@ -2,7 +2,15 @@
  * Scroll Into View
  */
 (function (videojs) {
+  var init = []
   var scrollIntoViewFunc = function (options) {
+    if (init[this._id] !== undefined) {
+      console.debug('Plugin logo, already initialized, skip.')
+      return;
+    } else {
+      init[this._id] = true
+    }
+
     defaultOptions = {}
     options = options || {}
     options = videojs.mergeOptions(defaultOptions, options)

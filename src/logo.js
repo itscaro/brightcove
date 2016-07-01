@@ -2,8 +2,16 @@
  * Logo
  */
 (function (videojs) {
+  var init = [];
   var logoFunc = function (options) {
-    defaultOptions = {}
+    if (init[this._id] !== undefined) {
+      console.debug('Plugin logo, already initialized, skip.')
+      return;
+    } else {
+      init[this._id] = true
+    }
+
+    var defaultOptions = {}
     options = options || {}
     options = videojs.mergeOptions(defaultOptions, options)
     console.debug('Plugin logo', options)

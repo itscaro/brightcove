@@ -19,15 +19,15 @@ var defaults = {
 
 var init = [];
 var onPlayerReady = function onPlayerReady(player, options) {
-  if (init[player._id] !== undefined) {
-    console.debug('Player ' + this.id_ + ' > Plugin logo, already initialized, skip.');
+  if (init[player.id_] !== undefined) {
+    console.debug('Player ' + player.id_ + ' > Plugin logo, already initialized, skip.');
     return;
   } else {
-    init[player._id] = true;
+    init[player.id_] = true;
   }
 
   options = _video2.default.mergeOptions(defaults, options || {});
-  console.debug('Player ' + this.id_ + ' > Plugin logo', options);
+  console.debug('Player ' + player.id_ + ' > Plugin logo', options);
 
   // Create variables and new div, anchor and image for company logo
   var title = void 0,

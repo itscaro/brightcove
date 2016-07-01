@@ -5,11 +5,11 @@ const defaults = {};
 
 let init = [];
 const onPlayerReady = function (player, options) {
-  if (init[player._id] !== undefined) {
-    console.debug('Player ' + this.id_ + ' > Plugin scrollIntoView, already initialized, skip.');
+  if (init[player.id_] !== undefined) {
+    console.debug('Player ' + player.id_ + ' > Plugin scrollIntoView, already initialized, skip.');
     return;
   } else {
-    init[player._id] = true
+    init[player.id_] = true
   }
 
   options = videojs.mergeOptions(defaults, options || {});

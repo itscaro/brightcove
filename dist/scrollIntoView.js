@@ -17,15 +17,18 @@ var defaults = {};
 
 var init = [];
 var onPlayerReady = function onPlayerReady(player, options) {
+  options = _video2.default.mergeOptions(defaults, options || {});
+
+  var bcPlayerId = document.getElementById(player.id_).attributes['data-player'].value;
+
   if (init[player.id_] !== undefined) {
-    console.debug('Player ' + player.id_ + ' > Plugin scrollIntoView, already initialized, skip.');
+    if (options.debug) console.debug('Player ' + bcPlayerId + '(#' + player.id_ + ') > Plugin scrollIntoView, already initialized, skip.');
     return;
   } else {
     init[player.id_] = true;
   }
 
-  options = _video2.default.mergeOptions(defaults, options || {});
-  console.debug('Player ' + player.id_ + ' > Plugin scrollIntoView', options);
+  if (options.debug) console.debug('Player ' + bcPlayerId + '(#' + player.id_ + ') > Plugin scrollIntoView', options);
 
   var checkIfVideoInView = function checkIfVideoInView() {
     // Player is fully in viewport, is never played and is in pause

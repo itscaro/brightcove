@@ -5,15 +5,20 @@ const defaults = {};
 
 let init = [];
 const onPlayerReady = function (player, options) {
+  options = videojs.mergeOptions(defaults, options || {});
+
+  let bcPlayerId = document.getElementById(player.id_).attributes['data-player'].value;
+
   if (init[player.id_] !== undefined) {
-    console.debug('Player ' + player.id_ + ' > Plugin scrollIntoView, already initialized, skip.');
+    if (options.debug)
+      console.debug('Player ' + bcPlayerId + '(#' + player.id_ + ') > Plugin scrollIntoView, already initialized, skip.');
     return;
   } else {
     init[player.id_] = true
   }
 
-  options = videojs.mergeOptions(defaults, options || {});
-  console.debug('Player ' + player.id_ + ' > Plugin scrollIntoView', options);
+  if (options.debug)
+    console.debug('Player ' + bcPlayerId + '(#' + player.id_ + ') > Plugin scrollIntoView', options);
 
   let checkIfVideoInView = function () {
     // Player is fully in viewport, is never played and is in pause

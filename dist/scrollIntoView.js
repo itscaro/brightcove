@@ -16,18 +16,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var defaults = {};
 
 var init = [];
-var onPlayerReady = function onPlayerReady(options) {
-  if (init[this._id] !== undefined) {
-    console.debug('Plugin logo, already initialized, skip.');
+var onPlayerReady = function onPlayerReady(player, options) {
+  if (init[player._id] !== undefined) {
+    console.debug('Player ' + this.id_ + ' > Plugin scrollIntoView, already initialized, skip.');
     return;
   } else {
-    init[this._id] = true;
+    init[player._id] = true;
   }
 
   options = _video2.default.mergeOptions(defaults, options || {});
-  console.debug('Plugin scrollIntoView', options);
-
-  var player = this;
+  console.debug('Player ' + player.id_ + ' > Plugin scrollIntoView', options);
 
   var checkIfVideoInView = function checkIfVideoInView() {
     // Player is fully in viewport, is never played and is in pause

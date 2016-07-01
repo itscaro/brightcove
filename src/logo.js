@@ -8,14 +8,14 @@ const defaults = {
 let init = [];
 const onPlayerReady = function (player, options) {
   if (init[player._id] !== undefined) {
-    console.debug('Plugin logo, already initialized, skip.');
+    console.debug('Player ' + this.id_ + ' > Plugin logo, already initialized, skip.');
     return;
   } else {
     init[player._id] = true
   }
 
   options = videojs.mergeOptions(defaults, options || {});
-  console.debug('Plugin logo', options);
+  console.debug('Player ' + this.id_ + ' > Plugin logo', options);
 
   // Create variables and new div, anchor and image for company logo
   let title,

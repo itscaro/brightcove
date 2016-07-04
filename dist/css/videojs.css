@@ -1,3 +1,19 @@
 .video-js a {
     color: #FFFFFF;
 }
+
+.video-js .vjs-dock-title {
+    line-height: 2.5;
+}
+
+.video-js .vjs-dock-description {
+    display: none;
+}
+
+.video-js .vjs-control[role=button] {
+    cursor: pointer;
+}
+
+.video-js .vjs-dock-shelf, .video-js .vjs-dock-text {
+    text-align: left;
+}

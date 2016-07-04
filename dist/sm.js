@@ -13,41 +13,41 @@ var _video2 = _interopRequireDefault(_video);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Default options for the plugin.
-var defaults = {};
+var defaults = {
+  key: '',
+  url: '',
+  debug: false
+};
 
 var init = [];
 var onPlayerReady = function onPlayerReady(player, options) {
   options = _video2.default.mergeOptions(defaults, options || {});
 
-  var bcPlayerId = document.querySelector('#' + player.id_ + ' video').getAttribute('data-player');
-
   if (init[player.id_] !== undefined) {
-    if (options.debug) console.debug('Player ' + bcPlayerId + '(#' + player.id_ + ') > Plugin scrollIntoView, already initialized, skip.');
+    if (options.debug) console.debug('Player ' + bcPlayerId + '(#' + player.id_ + ') > Plugin logo, already initialized, skip.');
     return;
   } else {
     init[player.id_] = true;
   }
 
-  if (options.debug) console.debug('Player ' + bcPlayerId + '(#' + player.id_ + ') > Plugin scrollIntoView', options);
+  if (options.debug) console.debug('Player ' + bcPlayerId + '(#' + player.id_ + ') > Plugin logo', options);
 
-  var checkIfVideoInView = function checkIfVideoInView() {
-    // Player is fully in viewport, is never played and is in pause
-    if ($(player.el_).isOnScreen(1, 1).inView && !player.hasStarted_ && player.paused()) {
-      player.play();
-    }
-  };
+  if (options.debug) console.debug('SMPlugin constructor');
+  //  player.one('loadedmetadata', function() {});
+  if (options.debug) console.debug('SMPlugin meta data');
 
-  var timer = void 0;
-  $(window).on('scroll.playOnScroll', function () {
-    // Trigger 250ms after when finish scrolling and only once
-    clearTimeout(timer);
-    timer = setTimeout(function () {
-      checkIfVideoInView();
-    }, 250);
+  var sm = new SMSdk(options.key, '');
+
+  player.ready(function () {
+    if (options.debug) console.debug('Player ready');
+
+    sm.unblock(options.url, function (url, hasAdBlock) {
+      if (options.debug) console.debug('SMPlugin unblock');
+    });
   });
 };
 
-var scrollIntoView = function scrollIntoView(options) {
+var sm = function sm(options) {
   var _this = this;
 
   this.ready(function () {
@@ -55,8 +55,8 @@ var scrollIntoView = function scrollIntoView(options) {
   });
 };
 
-_video2.default.plugin('scrollIntoView', scrollIntoView);
+_video2.default.plugin('sm', sm);
 
-exports.default = scrollIntoView;
+exports.default = sm;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}]},{},[1]);

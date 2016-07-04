@@ -7,7 +7,7 @@ let init = [];
 const onPlayerReady = function (player, options) {
   options = videojs.mergeOptions(defaults, options || {});
 
-  let bcPlayerId = document.getElementById(player.id_).attributes['data-player'].value;
+  let bcPlayerId = document.querySelector('#' + player.id_ + ' video').getAttribute('data-player');
 
   if (init[player.id_] !== undefined) {
     if (options.debug)

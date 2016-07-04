@@ -22,7 +22,7 @@ var init = [];
 var onPlayerReady = function onPlayerReady(player, options) {
   options = _video2.default.mergeOptions(defaults, options || {});
 
-  var bcPlayerId = document.getElementById(player.id_).attributes['data-player'].value;
+  var bcPlayerId = document.querySelector('#' + player.id_ + ' video').getAttribute('data-player');
 
   if (init[player.id_] !== undefined) {
     if (options.debug) console.debug('Player ' + bcPlayerId + '(#' + player.id_ + ') > Plugin logo, already initialized, skip.');

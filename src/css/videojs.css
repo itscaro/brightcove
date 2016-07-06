@@ -13,3 +13,11 @@
 .video-js .vjs-control[role=button] {
     cursor: pointer;
 }
+
+.video-js .vjs-dock-shelf {
+    text-align: right;
+}
+
+.video-js .vjs-dock-text {
+    text-align: left;
+}

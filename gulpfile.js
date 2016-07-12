@@ -26,14 +26,14 @@ gulp.task('babel', (cb) => {
 });
 
 gulp.task('browserify', ['babel'], (cb) => {
-  fs.readdir('./build', (err, files) => {
+  fs.readdir('./build/js', (err, files) => {
     for(var file of files) {
       if (file.match(/.+js$/)) {
         console.log(file)
-        browserify('build/' + file)
+        browserify('build/js/' + file)
           .bundle()
           .pipe(source(file))
-          .pipe(gulp.dest('dist'));
+          .pipe(gulp.dest('dist/js'));
       }
     }
 
